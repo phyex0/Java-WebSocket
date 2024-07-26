@@ -1,0 +1,12 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+configMapGenerator:
+  - name: socket-manager-app-config
+    files:
+      - application.yaml
+    options:
+      disableNameSuffixHash: true
+resources:
+  - deployment.yaml
+  - service.yaml

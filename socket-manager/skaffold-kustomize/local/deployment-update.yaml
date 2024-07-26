@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: socket-manager
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: socket-manager
+  template:
+    metadata:
+      labels:
+        app: socket-manager
+    spec:
+      initContainers:
+        - name: init-ds
+          image: busybox:latest
+      containers:
+        - name: socket-manager
+          image: localhost:5000/socket-manager:latest

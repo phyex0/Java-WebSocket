@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: socket-manager
+spec:
+  selector:
+    app: socket-manager
+  ports:
+    - name: 8080-8080
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
+  type: ClusterIP
+  sessionAffinity: ClientIP
+  sessionAffinityConfig:
+    clientIP:
+      timeoutSeconds: 10800 # 3 hours

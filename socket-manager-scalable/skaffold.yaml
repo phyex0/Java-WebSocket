@@ -1,0 +1,23 @@
+apiVersion: skaffold/v2beta12
+kind: Config
+build:
+  artifacts:
+    - image: localhost:5000/socket-manager
+      jib: { }
+  tagPolicy:
+    sha256: { }
+  local:
+    push: false
+  insecureRegistries:
+    - localhost:5000
+
+
+deploy:
+  kustomize:
+    paths: [ "skaffold-kustomize/base" ]
+
+profiles:
+  - name: local
+    deploy:
+      kustomize:
+        paths: [ "skaffold-kustomize/local" ]

@@ -1,0 +1,13 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: socket-manager
+spec:
+  template:
+    spec:
+      containers:
+        - name: socket-manager
+          envFrom:
+            - configMapRef:
+                name: socket-manager-env-config
+

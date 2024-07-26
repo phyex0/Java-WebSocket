@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: socket-manager
+  threads:
+    virtual:
+      enabled: true
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+      password:
+
+logging:
+  level:
+    root: INFO

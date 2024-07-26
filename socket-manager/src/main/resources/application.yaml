@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: socket-manager
+  threads:
+    virtual:
+      enabled: true
+logging:
+  level:
+    root: INFO
+
