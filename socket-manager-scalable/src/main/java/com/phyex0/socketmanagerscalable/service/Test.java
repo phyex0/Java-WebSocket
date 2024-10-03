@@ -1,0 +1,38 @@
+package com.phyex0.socketmanagerscalable.service;
+
+import com.phyex0.socketmanagerscalable.controller.WebSocketController;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Service;
+
+import java.util.Objects;
+
+
+@Slf4j
+@Service
+@EnableScheduling
+@AllArgsConstructor
+public class Test {
+
+    private final WebSocketController webSocketController;
+
+    private final String HOSTNAME = "HOSTNAME";
+
+    private String getContainer() {
+        String containerName = System.getenv(HOSTNAME);
+        return Objects.nonNull(containerName) ? containerName : HOSTNAME;
+    }
+
+    @Scheduled(fixedRate = 10000L)
+    public void testSocket() {
+        webSocketController.testingAll(getContainer());
+    }
+
+    @Scheduled(fixedRate = 10000L)
+    public void testSingle() {
+        webSocketController.testingUnique("This is a private message! " + getContainer(), "TestUser");
+    }
+
+}
