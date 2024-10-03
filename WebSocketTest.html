@@ -5,7 +5,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.js"></script>
     <script type="text/javascript">
         var stompClient = null;
-        var baseAddress = 'http://localhost:8080';
+        var baseAddress = 'http://socket-manager.tiga.health';
 
         function setConnected(connected) {
             document.getElementById('connect').disabled = connected;
@@ -15,6 +15,7 @@
         }
 
         function connect() {
+            var username = document.getElementById('from').value;
             var socket = new SockJS(baseAddress + '/ws');
             stompClient = Stomp.over(socket);
             stompClient.connect({}, function(frame) {
@@ -22,10 +23,10 @@
                 console.log('Connected: ' + frame);
                 
                 // Subscribe to multiple topics
-                stompClient.subscribe('/topic/ekmek', function (message) {
+                stompClient.subscribe('/public/chat', function (message) {
                     handleReceivedMessage(message.body, 'Public');
                 });
-                stompClient.subscribe('/user/TestUser/chat', function (message) {
+                stompClient.subscribe(`/private/${username}/chat`, function (message) {
                     handleReceivedMessage(message.body, 'Private');
                 });
             });
@@ -48,8 +49,9 @@
         function handleReceivedMessage(message, topic) {
             var response = document.getElementById('response');
             var p = document.createElement('p');
+            var username = document.getElementById('from').value;
             p.style.wordWrap = 'break-word';
-            p.appendChild(document.createTextNode(`[${topic}] ${message}`));
+            p.appendChild(document.createTextNode(`[${username} - ${topic}] ${message}`));
             response.appendChild(p);
         }
     </script>
