@@ -16,19 +16,19 @@ public class WebSocketController {
     private final SimpMessagingTemplate messagingTemplate;
 
     @MessageMapping("/listen")
-    @SendTo("/topic/ekmek")
-    public String triggerServos(@Payload String s) {
-        log.info("triggered: " + s);
-        return s;
+    @SendTo("/public/chat")
+    public String listen(@Payload String message) {
+        log.info("Listened message sent to public: " + message);
+        return message;
     }
 
-    public void testingAll(String s) {
-        messagingTemplate.convertAndSend("/topic/ekmek", s);
-        log.info(s + " : sent to client");
+    public void testingAll(String message) {
+        messagingTemplate.convertAndSend("/public/chat", message);
+        log.info(message + " : sent to public");
     }
 
-    public void testingUnique(String s, String id) {
-        messagingTemplate.convertAndSendToUser(id, "/chat", s);
-        log.info(s + " : sent to user: " + id);
+    public void testingUnique(String message, String userId) {
+        messagingTemplate.convertAndSendToUser(userId, "/chat", message);
+        log.info(message + " : sent to private: " + userId);
     }
 }

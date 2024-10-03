@@ -26,11 +26,11 @@ public class Test {
 
     @Scheduled(fixedRate = 10000L)
     public void testAll() {
-        webSocketController.testingAll(getContainer());
+        webSocketController.testingAll("This is a public message! ".concat(getContainer()));
     }
 
     @Scheduled(fixedRate = 10000L)
     public void testSingle() {
-        webSocketController.testingUnique("This is a private message!", "TestUser");
+        webSocketController.testingUnique("This is a private message! ".concat(getContainer()), "TestUser");
     }
 }
