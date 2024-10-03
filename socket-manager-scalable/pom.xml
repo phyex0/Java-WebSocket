@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.phyex0</groupId>
-    <artifactId>socket-manager</artifactId>
+    <artifactId>socket-manager-scalable</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>socket-manager</name>
-    <description>Socket management tool.</description>
+    <name>socket-manager-scalable</name>
+    <description>Socket management scalable tool.</description>
     <properties>
         <java.version>22</java.version>
     </properties>
@@ -72,7 +72,7 @@
                 <version>3.3.2</version>
                 <configuration>
                     <to>
-                        <image>localhost:5000/socket-manager:latest</image>
+                        <image>localhost:5000/socket-manager-scalable:latest</image>
                     </to>
                 </configuration>
             </plugin>
@@ -88,10 +88,10 @@
                             <image>openjdk:22</image>
                         </from>
                         <to>
-                            <image>localhost:5000/socket-manager:latest</image>
+                            <image>localhost:5000/socket-manager-scalable:latest</image>
                         </to>
                         <container>
-                            <mainClass>com.phyex0.socketmanager.SocketManagerApplication
+                            <mainClass>com.phyex0.socketmanagerscalable.SocketManagerScalableApplication
                             </mainClass> <!-- Update this to your main class -->
                         </container>
                     </configuration>
